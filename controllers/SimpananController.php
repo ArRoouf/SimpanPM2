@@ -9,8 +9,11 @@ class SimpananController
 {
     public function masuk()
     {
+        global $rootPath;
         $pembacaMeters = PembacaMeter::getAllPembacaMeters();
-        require_once '../views/simpanan/masuk.php';
+        return $pembacaMeters;
+
+        require_once $rootPath . '/views/simpanan/masuk.php';
     }
 
     public function storeMasuk()
@@ -31,9 +34,13 @@ class SimpananController
 
     public function keluar()
     {
+        global $rootPath;
         $pembacaMeters = PembacaMeter::getAllPembacaMeters();
         $simpananMasuks = SimpananMasuk::getAllSimpananMasuks();
-        require_once '../views/simpanan/keluar.php';
+        return $pembacaMeters;
+        return $simpananMasuks;
+
+        require_once $rootPath . '/views/simpanan/keluar.php';
     }
 
     public function storeKeluar()
@@ -52,12 +59,15 @@ class SimpananController
 
     public function saldo()
     {
+        global $rootPath;
         $pembacaMeters = PembacaMeter::getAllPembacaMeters();
         $nama_pm = isset($_GET['nama_pm']) ? $_GET['nama_pm'] : null;
         $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : null;
 
         $saldos = SimpananMasuk::getSaldoSimpanan($nama_pm, $tahun);
 
-        require_once '../views/simpanan/saldo.php';
+        return $saldos;
+        return $pembacaMeters;
+        require_once $rootPath . '/views/simpanan/saldo.php';
     }
 }
