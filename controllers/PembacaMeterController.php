@@ -7,14 +7,17 @@ class PembacaMeterController
 {
     public function index()
     {
-        $rootPath = realpath(dirname(__FILE__) . '/../');
+        global $rootPath;
         $pembacaMeters = PembacaMeter::getAllPembacaMeters();
+        return $pembacaMeters;
+
         require_once $rootPath . '/views/pembaca_meter/index.php';
     }
 
     public function create()
     {
-        require_once '../views/pembaca_meter/create.php';
+        global $rootPath;
+        require_once $rootPath . '/views/pembaca_meter/create.php';
     }
 
     public function store()
@@ -34,7 +37,9 @@ class PembacaMeterController
     public function edit($id)
     {
         $pembacaMeter = PembacaMeter::getPembacaMeterById($id);
-        require_once '../views/pembaca_meter/edit.php';
+        return $pembacaMeter;
+
+        require_once $rootPath . '/views/pembaca_meter/edit.php';
     }
 
     public function update($id)
